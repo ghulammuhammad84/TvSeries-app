@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import {useState , useEffect } from 'react';
+import TvSeries from './components/TvSeries';
 import './App.css';
+import HeadBar from './components/HeadBar';
 
 function App() {
+
+  const [tvState, setTvState] = useState([]);
+  // const [result, setResult] = useState([]);
+
+useEffect(() => {
+    async function FetchApi() {
+        let tvApi = await fetch('https://api.jikan.moe/v3/search/anime?q=naruto');
+        let jsonApi = await tvApi.json();
+        setTvState(jsonApi.results);
+        // setCountry(jsonApi.Countries);
+
+// { this is Appjs section for git}
+    }
+    FetchApi();
+}, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  
+      <div >
+              {/* <HeadBar/> */}
+        <TvSeries TvSeries={tvState}/>
+      
+      </div>
+    );
 }
 
 export default App;
