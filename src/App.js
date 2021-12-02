@@ -2,7 +2,7 @@ import {useState , useEffect } from 'react';
 import TvSeries from './components/TvSeries';
 import './App.css';
 import HeadBar from './components/HeadBar';
-
+import Routing from './Routing';
 function App() {
 
   const [tvState, setTvState] = useState([]);
@@ -25,7 +25,9 @@ useEffect(() => {
   
       <div >
               {/* <HeadBar/> */}
+              <Routing/>
         <TvSeries TvSeries={tvState}/>
+      
       
       </div>
     );
